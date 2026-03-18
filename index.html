@@ -235,9 +235,136 @@ body{
   50% { opacity: 0.7; text-shadow: 0 0 12px #38bdf8; }
   100% { opacity: 1; text-shadow: 0 0 4px #38bdf8; }
 }
+.playlist-buttons{
+display:flex;
+justify-content:center;
+gap:12px;
+margin:16px 0;
+}
 
+/* BASE BUTTON */
+.filter-btn{
+padding:8px 20px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.25);
+
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+color:#e5e7eb;
+
+background:transparent;
+
+backdrop-filter:none;
+-webkit-backdrop-filter:none;
+
+transition:all .35s ease;
+position:relative;
+overflow:hidden;
+}
+
+/* SHINE EFFECT */
+.filter-btn::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,0.5),
+transparent
+);
+transition:.6s;
+}
+
+/* HOVER (💚 light green glow) */
+.filter-btn:hover{
+transform:translateY(-3px) scale(1.03);
+background:rgba(74,222,128,0.15); /* light green */
+
+box-shadow:
+0 6px 20px rgba(0,0,0,0.3),
+0 0 12px rgba(74,222,128,0.5);
+}
+
+.filter-btn:hover::before{
+left:100%;
+}
+
+/* ACTIVE (💚 main green button) */
+.filter-btn.active{
+background:#4ade80; /* light green */
+color:#022c22;
+
+border:1px solid rgba(255,255,255,0.6);
+
+box-shadow:
+0 0 18px rgba(74,222,128,.9),
+0 0 30px rgba(74,222,128,.4);
+}
+
+/* RIPPLE */
+.filter-btn::after{
+content:"";
+position:absolute;
+width:0;
+height:0;
+background:rgba(255,255,255,.35);
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+transition:.5s;
+}
+
+.filter-btn:active::after{
+width:220px;
+height:220px;
+opacity:0;
+}
 </style>
   <script>
+      
+      function filterSongs(type,btn){
+
+currentFilter = type;
+
+/* active button */
+document.querySelectorAll(".filter-btn")
+.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+/* clear list */
+list.innerHTML="";
+
+/* reset indexes */
+filteredIndexes = [];
+
+songs.forEach((s,i)=>{
+
+if(type==="all" || s.category===type){
+
+filteredIndexes.push(i);
+
+const d=document.createElement("div");
+d.className="song";
+
+d.innerHTML=`<img src="${s.cover}">
+<span>${s.name}</span>`;
+
+d.onclick=()=>playSong(i);
+
+list.appendChild(d);
+
+}
+
+});
+
+}
 const topText = document.querySelector('.top-text');
 
 // every 30s, add flicker class
@@ -271,7 +398,11 @@ setInterval(() => {
     <button class="play" id="playBtn" onclick="toggle()">▶</button>
     <button onclick="next()">⏭</button>
   </div>
-
+<div class="playlist-buttons">
+  <button class="filter-btn active" onclick="filterSongs('all',this)">✨</button>
+  <button class="filter-btn" onclick="filterSongs('new',this)">❤️‍🔥</button>
+  <button class="filter-btn" onclick="filterSongs('chill',this)">💥</button>
+</div>
   <div class="list" id="list"></div>
 
   <audio id="audio"></audio>
@@ -367,10 +498,13 @@ function closeBgModal(){
   settingsBtn.classList.remove("active");
 }
 </script>
+
 <!-- MOBILE LOGO IMAGE -->
 <img src="https://drive.google.com/thumbnail?id=1pVLvz0c2tYbX4ZVVPAy1ghL0DHStvf7e&sz=w2000" class="mobile-logo" alt="Logo">
 
+
 <script>
+    
 /* ONLINE SONGS ONLY */
 const songs = [
   {
@@ -378,9 +512,21 @@ const songs = [
     url:"https://raw.githubusercontent.com/89Flexy/Anime-/1ede04fa3e0ba664d2f74bb9d9c44edcdec41fa4/Paro - adityarikhari  UNPLG'd - UNPLGd Records.mp3",
     cover:"https://drive.google.com/thumbnail?id=1fgANA0vPW_vYiZNv06YmN0hZUSGJBUuC&sz=w2000"
   },
+  {
+name:"New",
+category:"new",
+url:"https://raw.githubusercontent.com/89Flexy/Anime-/0bd34c4206771c6367868a504be5ce58b1f527e6/Sunday - Aditya A  Naalayak  Ronit Vinta - Aditya A.mp3",
+cover:"https://drive.google.com/thumbnail?id=1fgANA0vPW_vYiZNv06YmN0hZUSGJBUuC&sz=w2000"
+},
+  {
+name:"bot",
+category:"new",
+url:"https://raw.githubusercontent.com/89Flexy/Anime-/0bd34c4206771c6367868a504be5ce58b1f527e6/Sunday - Aditya A  Naalayak  Ronit Vinta - Aditya A.mp3",
+cover:"https://drive.google.com/thumbnail?id=1fgANA0vPW_vYiZNv06YmN0hZUSGJBUuC&sz=w2000"
+},
     {
     name:"Paro Full ",
-    url:"https://raw.githubusercontent.com/89Flexy/Anime-/cf155ed0873c56ccf94679e20b86075a9b868322/Aditya%20Rikhari%20-%20Paaro%20(Lyrics)%20-%20seventyskye.mp3",
+    url:"https://raw.githubusercontent.com/89Flexy/Anime-/cf155ed0873c56ccf94679e20b86075a9b868322/Aditya Rikhari - Paaro (Lyrics) - seventyskye.mp3",
     cover:"https://i.ibb.co/RT8Wby8C/c40904b2ccafb093bd44cbc78abb2209.jpg"
   },
   {
@@ -420,12 +566,12 @@ const songs = [
   },
   {
     name:"Kahi Tri Bol",
-    url:"https://raw.githubusercontent.com/89Flexy/Anime-/cf155ed0873c56ccf94679e20b86075a9b868322/Kahi%20Tari%20Bol%20-%20Swager%20Boy%20ft.%20CrazyShrutiii%20(Official%20Music%20Video)%20Dir.%20Zahid%20Sayyed%20Films%20-%20SWAGER%20BOY.mp3",
+    url:"https://raw.githubusercontent.com/89Flexy/Anime-/cf155ed0873c56ccf94679e20b86075a9b868322/Kahi Tari Bol - Swager Boy ft. CrazyShrutiii (Official Music Video) Dir. Zahid Sayyed Films - SWAGER BOY.mp3",
     cover:"https://drive.google.com/thumbnail?id=1hngqZ-4TUSG34EnWCUmUK1nY-Cwqh6K7&sz=w2000"
   },
     {
     name:"Dhyan Rakhakar",
-    url:"https://raw.githubusercontent.com/89Flexy/Anime-/cf155ed0873c56ccf94679e20b86075a9b868322/Dhyan%20Rakhakar%20%E2%80%93%20R%20DYNO%20%20Official%20Audio%20-%20R%20DYNO.mp3",
+    url:"https://raw.githubusercontent.com/89Flexy/Anime-/cf155ed0873c56ccf94679e20b86075a9b868322/Dhyan Rakhakar – R DYNO  Official Audio - R DYNO.mp3",
     cover:"https://i.ibb.co/9mqzHh07/b6084f026b016b404ee4f186944e5885.jpg"
   },
      {
@@ -463,6 +609,7 @@ const songs = [
     url:"https://raw.githubusercontent.com/89Flexy/Anime-/0bd34c4206771c6367868a504be5ce58b1f527e6/AUR - TU HAI KAHAN - Raffey - Usama - Ahad (Official Music Video) (320 kbps).mp3",
     cover:"https://i.ibb.co/pjYJq2ys/90a397f1764dc5471fd15e13147859eb.jpg"
   },
+  
       {
     name:"Ekti Ekti",
     url:"https://raw.githubusercontent.com/89Flexy/Anime-/0bd34c4206771c6367868a504be5ce58b1f527e6/Ekti ekti -Chintu.m4a",
@@ -488,7 +635,8 @@ const nameUI=document.getElementById("songName");
 const cover=document.getElementById("cover");
 const progress=document.getElementById("progress");
 const playBtn=document.getElementById("playBtn");
-
+let filteredIndexes = songs.map((_,i)=>i); 
+let currentFilter = "all";
 let index=0;
 
 /* PLAY SONG */
@@ -530,19 +678,23 @@ function playSong(i){
 }
 
 function toggle(){
+
   if(!audio.src){
-    playSong(0);
+    playSong(filteredIndexes[0]); // 🔥 current section ka first song
     return;
   }
+
   if(audio.paused){
     audio.play();
     playBtn.innerText = "⬜";
     cover.classList.add("playing");
-  } else {
+  } 
+  else{
     audio.pause();
     playBtn.innerText = "▶";
     cover.classList.remove("playing");
   }
+
 }
 
 audio.onended = () => {
@@ -567,19 +719,35 @@ audio.onended=next;
 </script>
 <script>
 function next(){
-  index++;
-  if(index >= songs.length){
-    index = 0; // last ke baad first
-  }
-  playSong(index);
+
+let pos = filteredIndexes.indexOf(index);
+
+pos++;
+
+if(pos >= filteredIndexes.length){
+pos = 0;
+}
+
+index = filteredIndexes[pos];
+
+playSong(index);
+
 }
 
 function prev(){
-  index--;
-  if(index < 0){
-    index = songs.length - 1; // first se previous = last
-  }
-  playSong(index);
+
+let pos = filteredIndexes.indexOf(index);
+
+pos--;
+
+if(pos < 0){
+pos = filteredIndexes.length - 1;
+}
+
+index = filteredIndexes[pos];
+
+playSong(index);
+
 }
 </script>
 <script>
