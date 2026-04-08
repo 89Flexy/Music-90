@@ -504,8 +504,106 @@ function closeBgModal(){
 
 <!-- MOBILE LOGO IMAGE -->
 <img src="https://drive.google.com/thumbnail?id=1pVLvz0c2tYbX4ZVVPAy1ghL0DHStvf7e&sz=w2000" class="mobile-logo" alt="Logo">
+<!-- 🔮 OFFLINE MODAL -->
+<div class="offline-modal" id="offlineModal">
+  <div class="offline-box">
+    <h3>Settings</h3>
 
+  <button class="offline-btn" onclick="downloadOffline()">
+  <b>Offline Mode V.1</b>
+</button>
+<audio id="clickSound" src="Fahh.mp3"></audio>
+    <button class="offline-close" onclick="closeOffline()">
+      Close
+    </button>
+  </div>
+</div>
+<style>
+    /* 🔮 GLASS MODAL */
+.offline-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+}
 
+.offline-box{
+  width:260px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  text-align:center;
+  color:#fff;
+}
+
+.offline-box h3{
+  margin-bottom:15px;
+}
+
+/* BUTTON */
+.offline-btn{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:12px;
+  background:#ef4444;   /* 🔴 RED COLOR */
+  color:#fff;           /* white text (best for red) */
+  font-weight:600;
+  cursor:pointer;
+  margin-bottom:10px;
+}
+/* CLOSE */
+.offline-close{
+  width:100%;
+  padding:8px;
+  border:none;
+  border-radius:12px;
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  cursor:pointer;
+}
+</style>
+<script>
+    const logo = document.querySelector(".mobile-logo");
+const offlineModal = document.getElementById("offlineModal");
+
+/* OPEN MODAL */
+logo.addEventListener("click", () => {
+  offlineModal.style.display = "flex";
+});
+
+/* CLOSE */
+function closeOffline(){
+  offlineModal.style.display = "none";
+}
+
+/* DOWNLOAD ZIP */
+
+function downloadOffline(){
+
+  const sound = document.getElementById("clickSound");
+  sound.currentTime = 0;
+  sound.play();
+
+  const link = document.createElement("a");
+
+  // 🔥 APNA ZIP LINK
+  link.href = "https://your-domain.com/offline-pack.zip";
+
+  link.download = "https://drive.google.com/uc?export=download&id=FILE_ID";
+
+  // thoda delay taki sound play ho jaye
+  setTimeout(()=>{
+    link.click();
+  },300);
+}
+</script>
 <script>
     
 /* ONLINE SONGS ONLY */
