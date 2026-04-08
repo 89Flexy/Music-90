@@ -502,6 +502,7 @@ function closeBgModal(){
 }
 </script>
 
+
 <!-- MOBILE LOGO IMAGE -->
 <img src="https://drive.google.com/thumbnail?id=1pVLvz0c2tYbX4ZVVPAy1ghL0DHStvf7e&sz=w2000" class="mobile-logo" alt="Logo">
 <!-- 🔮 OFFLINE MODAL -->
@@ -509,7 +510,7 @@ function closeBgModal(){
   <div class="offline-box">
     <h3>Settings</h3>
 
-  <button class="offline-btn" onclick="downloadOffline()">
+  <button class="offline-btn" onclick="https://drive.google.com/uc?export=download&id=FILE_ID">
   <b>Offline Mode V.1</b>
 </button>
 <audio id="clickSound" src="Fahh.mp3"></audio>
@@ -593,10 +594,7 @@ function downloadOffline(){
 
   const link = document.createElement("a");
 
-  // 🔥 APNA ZIP LINK
-  link.href = "https://your-domain.com/offline-pack.zip";
 
-  link.download = "https://drive.google.com/uc?export=download&id=FILE_ID";
 
   // thoda delay taki sound play ho jaye
   setTimeout(()=>{
