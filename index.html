@@ -510,18 +510,13 @@ function closeBgModal(){
   <div class="offline-box">
     <h3>Settings</h3>
 
-<button class="offline-btn" onclick="downloadFile()">
+<button class="offline-btn" onclick="redirectDownload()">
   <b>Offline Mode V.1</b>
 </button>
 
 <script>
-function downloadFile(){
-  const a = document.createElement("a");
-  a.href = "https://drive.google.com/uc?export=download&id=1vxFx_NP9qcS6zmpPh9tsUMmUgJjV6aGO";
-  a.setAttribute("download", "Music-89-Offline.zip");
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+function redirectDownload(){
+  window.location.href = "https://drive.google.com/uc?export=download&id=1vxFx_NP9qcS6zmpPh9tsUMmUgJjV6aGO";
 }
 </script>
 <audio id="clickSound" src="Fahh.mp3"></audio>
