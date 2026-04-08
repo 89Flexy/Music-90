@@ -510,15 +510,12 @@ function closeBgModal(){
   <div class="offline-box">
     <h3>Settings</h3>
 
-<button class="offline-btn" onclick="redirectDownload()">
+<a href="https://drive.google.com/uc?export=download&id=1vxFx_NP9qcS6zmpPh9tsUMmUgJjV6aGO" 
+   target="_blank" 
+   class="offline-btn">
   <b>Offline Mode V.1</b>
-</button>
+</a>
 
-<script>
-function redirectDownload(){
-  window.location.href = "https://drive.google.com/uc?export=download&id=1vxFx_NP9qcS6zmpPh9tsUMmUgJjV6aGO";
-}
-</script>
 <audio id="clickSound" src="Fahh.mp3"></audio>
     <button class="offline-close" onclick="closeOffline()">
       Close
@@ -590,23 +587,8 @@ function closeOffline(){
   offlineModal.style.display = "none";
 }
 
-/* DOWNLOAD ZIP */
-
-function downloadOffline(){
-
-  const sound = document.getElementById("clickSound");
-  sound.currentTime = 0;
-  sound.play();
-
-  const link = document.createElement("a");
 
 
-
-  // thoda delay taki sound play ho jaye
-  setTimeout(()=>{
-    link.click();
-  },300);
-}
 </script>
 <script>
     
