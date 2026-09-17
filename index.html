@@ -1528,7 +1528,11 @@ body::after{
 </div>
 
 
-<audio id="audio"></audio>
+<audio
+  id="audio"
+  preload="auto"
+  playsinline>
+</audio>
 
 
 <script>
@@ -1768,16 +1772,14 @@ updateGreeting();
 
 function playSong(i){
 
+  if(!songs[i]) return;
+
   index = i;
 
   const s = songs[i];
 
   audio.src = s.url;
-
-  audio.play().catch(()=>{});
-
-  playBtn.innerText = "Ⅱ";
-  nowPlay.innerText = "Ⅱ";
+  audio.load();
 
   miniName.innerText = s.name;
   nowName.innerText = s.name;
@@ -1788,56 +1790,51 @@ function playSong(i){
   document.getElementById("heroImage").src = s.cover;
 
   addRecent(i);
-
   updateFavoriteUI();
 
   if("mediaSession" in navigator){
 
-    navigator.mediaSession.metadata =
-      new MediaMetadata({
-
-        title:s.name,
-        artist:"Music-89",
-        album:"Abhi's Music",
-
-        artwork:[
-          {
-            src:s.cover,
-            sizes:"512x512",
-            type:"image/jpeg"
-          }
-        ]
-
-      });
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: s.name,
+      artist: "Music-89",
+      album: "Abhi's Music",
+      artwork: [
+        {
+          src: s.cover,
+          sizes: "512x512",
+          type: "image/jpeg"
+        }
+      ]
+    });
 
     try{
-
       navigator.mediaSession.setActionHandler(
         "play",
-        ()=>audio.play()
+        () => audio.play()
       );
 
       navigator.mediaSession.setActionHandler(
         "pause",
-        ()=>audio.pause()
+        () => audio.pause()
       );
 
       navigator.mediaSession.setActionHandler(
         "nexttrack",
-        next
+        () => next()
       );
 
       navigator.mediaSession.setActionHandler(
         "previoustrack",
-        prev
+        () => prev()
       );
 
     }catch(e){}
-
   }
 
+  audio.play().catch(err => {
+    console.log("Playback blocked:", err);
+  });
 }
-
 
 /* =========================================================
    TOGGLE
@@ -1885,18 +1882,23 @@ audio.onpause = ()=>{
 
 function next(){
 
-  if(!filteredIndexes.length)
-    return;
+  if(!filteredIndexes.length) return;
 
   let pos = filteredIndexes.indexOf(index);
 
-  pos++;
+  if(pos === -1){
+    pos = 0;
+  }else{
+    pos++;
+  }
 
-  if(pos >= filteredIndexes.length)
-    pos=0;
+  if(pos >= filteredIndexes.length){
+    pos = 0;
+  }
 
-  playSong(filteredIndexes[pos]);
+  const nextIndex = filteredIndexes[pos];
 
+  playSong(nextIndex);
 }
 
 function prev(){
