@@ -1,16 +1,14 @@
-const CACHE_NAME = "music89-v1";
+const CACHE_NAME = "music89-v2";
 
 const APP_FILES = [
-  "/",
-  "/index.html",
-  "/manifest.json"
+  "./service-worker.js",
+  "./index.html",
+  "./manifest.json"
 ];
 
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(APP_FILES);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_FILES))
   );
 
   self.skipWaiting();
@@ -35,9 +33,7 @@ self.addEventListener("fetch", event => {
 
   event.respondWith(
     caches.match(event.request).then(cached => {
-      return cached || fetch(event.request).catch(() => {
-        return caches.match("/index.html");
-      });
+      return cached || fetch(event.request);
     })
   );
 });
