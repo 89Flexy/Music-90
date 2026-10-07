@@ -3044,26 +3044,7 @@ window.addEventListener("appinstalled", () => {
 if (isPWAInstalled()) {
   installBtn.style.display = "none";
 }
-      /* =========================
-   SERVICE WORKER
-========================= */
 
-if ("serviceWorker" in navigator) {
-
-  window.addEventListener("load", () => {
-
-    navigator.serviceWorker
-      .register("./sw.js")
-      .then(() => {
-        console.log("Music-89 Service Worker registered");
-      })
-      .catch((error) => {
-        console.error("Service Worker failed:", error);
-      });
-
-  });
-
-}
 </script>
 
 </body>
