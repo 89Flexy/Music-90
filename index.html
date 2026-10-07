@@ -62,7 +62,100 @@ body{
 
   overflow-x:hidden;
 }
+.hero-art{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+/* ===== RECENTLY PLAYED - COMPACT ===== */
 
+@media(max-width:700px){
+
+  .recent-list{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  .recent-list .recent-item{
+    width:100%;
+    height:52px;
+    min-height:52px;
+    padding:6px 7px;
+    gap:8px;
+    border-radius:14px;
+    box-sizing:border-box;
+  }
+
+  .recent-list .recent-item img{
+    width:38px;
+    height:38px;
+    min-width:38px;
+    border-radius:10px;
+    object-fit:cover;
+  }
+
+  .recent-list .recent-info{
+    flex:1;
+    width:0;
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .recent-list .recent-info b{
+    display:block;
+    width:100%;
+    font-size:10.5px;
+    line-height:13px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .recent-list .recent-info small{
+    display:block;
+    font-size:8px;
+    line-height:10px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .recent-list .recent-item > span{
+    width:20px;
+    min-width:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    flex-shrink:0;
+  }
+}
+
+/* Extra small phones */
+@media(max-width:380px){
+
+  .recent-list .recent-item{
+    height:49px;
+    min-height:49px;
+    padding:5px 6px;
+    gap:7px;
+  }
+
+  .recent-list .recent-item img{
+    width:35px;
+    height:35px;
+    min-width:35px;
+  }
+
+  .recent-list .recent-info b{
+    font-size:10px;
+  }
+
+  .recent-list .recent-info small{
+    font-size:7.5px;
+  }
+}
 /* BACKGROUND GLOW */
 
 body::before{
@@ -329,7 +422,186 @@ body::after{
 
   cursor:pointer;
 }
+/* ===== MY SONGS MOBILE FIX ===== */
 
+@media (max-width:700px){
+
+  #librarySection .full-list{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  #librarySection .full-song{
+    width:100%;
+    height:52px;
+    min-height:52px;
+    padding:6px 7px;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    border-radius:14px;
+  }
+
+  #librarySection .full-song img{
+    width:38px;
+    height:38px;
+    min-width:38px;
+    max-width:38px;
+
+    border-radius:10px;
+    object-fit:cover;
+  }
+
+  #librarySection .full-song-info{
+    flex:1;
+    width:0;
+    min-width:0;
+    overflow:hidden;
+  }
+
+  #librarySection .full-song-info b{
+    display:block;
+
+    width:100%;
+
+    font-size:10.5px;
+    font-weight:600;
+    line-height:13px;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  #librarySection .full-song-info small{
+    display:block;
+
+    margin-top:1px;
+
+    font-size:8px;
+    line-height:10px;
+
+    color:var(--muted);
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  #librarySection .favorite{
+    display:flex !important;
+
+    align-items:center;
+    justify-content:center;
+
+    width:29px;
+    height:29px;
+    min-width:29px;
+
+    padding:0;
+    margin:0;
+
+    border-radius:50%;
+
+    font-size:16px;
+    line-height:1;
+
+    flex-shrink:0;
+  }
+
+  #librarySection .full-song > span{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:20px;
+    min-width:20px;
+
+    font-size:10px;
+
+    flex-shrink:0;
+  }
+
+}
+
+
+/* EXTRA SMALL PHONES */
+
+@media (max-width:380px){
+
+  #librarySection .full-song{
+    height:49px;
+    min-height:49px;
+    padding:5px 6px;
+    gap:7px;
+  }
+
+  #librarySection .full-song img{
+    width:35px;
+    height:35px;
+    min-width:35px;
+  }
+
+  #librarySection .full-song-info b{
+    font-size:10px;
+  }
+
+  #librarySection .full-song-info small{
+    font-size:7.5px;
+  }
+
+  #librarySection .favorite{
+    width:27px;
+    height:27px;
+    min-width:27px;
+    font-size:15px;
+  }
+
+}
+
+  /* SONG NAME SMALL */
+  .full-song-info b{
+    display:block;
+    font-size:11px;
+    line-height:14px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:100%;
+  }
+
+  /* ARTIST NAME */
+  .full-song-info small{
+    display:block;
+    font-size:8px;
+    line-height:11px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  /* FAVOURITE ALWAYS VISIBLE */
+  .full-song .favorite{
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    min-width:28px;
+    padding:0;
+    font-size:15px;
+    flex-shrink:0;
+  }
+
+  /* PLAY */
+  .full-song > span{
+    font-size:10px;
+    flex-shrink:0;
+  }
+}
 /* HERO ART */
 
 .hero-art{
@@ -1154,6 +1426,7 @@ body::after{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -1273,7 +1546,7 @@ body::after{
 
       <div class="library-card" onclick="showFavorites()">
         <div class="library-icon">♡</div>
-        <b>Walk</b>
+        <b>Fav</b>
         <small id="favCount">0 songs</small>
       </div>
 
@@ -1348,7 +1621,7 @@ body::after{
 
       <button class="filter"
               onclick="showFavorites(this)">
-       WALK ♥
+       Fav ♥
       </button>
 
     </div>
@@ -1493,7 +1766,9 @@ body::after{
             onclick="clearRecent()">
       🧹 Clear Recently Played
     </button>
-
+<button class="setting-button" onclick="installAPK()">
+  📦 Install APK
+</button>
     <button class="close-btn"
             onclick="closeSettings()">
       Close
@@ -1544,35 +1819,35 @@ body::after{
 const songs = [
 {
  name:"Udi Udi - Aneesh Poojari & Sarkarmusic.25",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Music-90/39119743db7052866cdbd7fd4c21a46f7e234d35/UDI UDI   Aneesh.Poojari &_ sarkarmusic.25  The Collective Tape  Official Music Video - New Bombay Collective.mp3",
  cover:"https://drive.google.com/thumbnail?id=1_Kr_2wjE7N_F0WtNTBMeJAxovJGu3ghE&sz=w2000"
 },
 
 {
  name:"Paro - Aditya Rikhari",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Anime-/1ede04fa3e0ba664d2f74bb9d9c44edcdec41fa4/Paro - adityarikhari  UNPLG'd - UNPLGd Records.mp3",
  cover:"https://drive.google.com/thumbnail?id=1jsFAiqmaQ2XZmSkrFpDJFaWFrqePOOr7&sz=w2000"
 },
 
 {
  name:"Paaro - Aditya Rikhari",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Anime-/cf155ed0873c56ccf94679e20b86075a9b868322/Aditya Rikhari - Paaro (Lyrics) - seventyskye.mp3",
  cover:"https://drive.google.com/thumbnail?id=1jsFAiqmaQ2XZmSkrFpDJFaWFrqePOOr7&sz=w2000"
 },
 
 {
  name:"Tum Se - OutStation",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Music-90/9388e687d4c9ef3d9fca97d590abb3fc0ab505e8/OutStation_-_Tum_Se_Official_Lyric_Video_128KBPS.mp4",
  cover:"https://drive.google.com/thumbnail?id=1Ch3JlsgDOSrgX9Og2gJs2y9Xh7fsGLB5&sz=w2000"
 },
 
 {
  name:"Banda Kaam Ka - Chaar Diwaari x Sanjith Hegde",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Music-90/9388e687d4c9ef3d9fca97d590abb3fc0ab505e8/Chaar_Diwaari_x_Sanjith_Hegde_-_Banda_Kaam_Ka_Official_Video_Parvana_EP_Def_Jam_India_48kbps.mp4",
  cover:"https://drive.google.com/thumbnail?id=1ptXh9GIXmrBqpMoodr5d0ZNRhulWLbLU&sz=w2000"
 },
@@ -1607,35 +1882,35 @@ const songs = [
 
 {
  name:"Kashish - Ashish Bhatia, Kashish Ratnani & Omkar Singh",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Music-90/64f04bcb9926808bcf026d745903809101b9a632/KASHISH (Official Music Video) Ashish Bhatia  Kashish Ratnani  Omkar Singh - Ashish Bhatia.mp3",
  cover:"https://drive.google.com/thumbnail?id=1ZFAmPh9pUQ-HrN_FecYwSKskHIAyo-jJ&sz=w2000"
 },
 
 {
  name:"Jaane Na Tu - Bhoomi",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Music-90/4d0f75c9e6278db53fa791146b9308b24ec383b1/Jaane Na Tu (Official Music Video)  Bhoomi  Almost Loved - EP  UR Debut  Latest Hindi Indie Song - UR DEBUT (1).mp3",
  cover:"https://drive.google.com/thumbnail?id=1FvtsvG1YMfXNzSntS0M4AJ1xPbH8qaB0&sz=w2000"
 },
 
 {
  name:"Ik Kudi - wolf.cryman",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Anime-/b6e2582752150321054c6b8481af85a651f66a75/Ik Kudi - wolf.cryman.mp3",
  cover:"https://drive.google.com/thumbnail?id=1pZaGNx_5euBb596Cti0v9NoWI0dNm0br&sz=w2000"
 },
 
 {
  name:"Kithe Jawan - Bhoomi, Naaz & Saaheal",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Music-90/4d0f75c9e6278db53fa791146b9308b24ec383b1/Kithe Jawan (Takki Jawan) - Official Visualiser  Bhoomi  Naaz  Saaheal  UR Debut  Hindi songs - UR DEBUT.mp3",
  cover:"https://drive.google.com/thumbnail?id=1Ng1FWl2TEwIosko7m7geHzkVPI7M7JZv&sz=w2000"
 },
 
 {
  name:"Kahi Tari Bol - Swager Boy ft. CrazyShrutiii",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Music-90/4d0f75c9e6278db53fa791146b9308b24ec383b1/Kahi Tari Bol - Swager Boy ft. CrazyShrutiii (Official Music Video) Dir. Zahid Sayyed Films - SWAGER BOY.mp3",
  cover:"https://drive.google.com/thumbnail?id=1Gkhl0LlqbKeGkK0fuHUo8SAdudcFXX0W&sz=w2000"
 },
@@ -1680,10 +1955,141 @@ const songs = [
  url:"https://raw.githubusercontent.com/89Flexy/Music-90/4d0f75c9e6278db53fa791146b9308b24ec383b1/Sahiba Lyrics - Aditya Rikhari • saahiba, aaye ghar kaahe na - Vibe Bird.mp3",
  cover:"https://drive.google.com/thumbnail?id=1MFX3SWCwVVlIkAGRXRB8aWqhqBCWHboU&sz=w2000"
 },
-
+{
+  name: "That Kid - Siroyi - Hustle 5 Apna Homeground",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/That Kid  Siroyi  Hustle 5 Apna Homeground - KaanPhod Music (1).mp3",
+  cover: "https://drive.google.com/thumbnail?id=1g-VoJaKgVdc8WM6_hI2q2Aka0gMWNkCv&sz=w2000"
+},
+{
+  name: "YALGAAR - CARRYMINATI X Wily Frenzy",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/YALGAAR - CARRYMINATI X Wily Frenzy - CarryMinati.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1j828IfrGY_sjzfANlcQo76-GYC8rUr2v&sz=w2000"
+},
+{
+  name: "Pavazha Malli - Sai Abhyankkar",
+  category: "all",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/SaiAbhyankkar - Pavazha Malli (Music Video)  Kayadu  Shruti Haasan  Vivek  Thejo  Think Indie - Think Music India.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1nwA_JRnjPfngNTCsWg50dkwa2xWGdEAb&sz=w2000"
+},
+{
+  name: "One Two Three Four - Chennai Express",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/One Two Three Four Chennai Express Full Video Song  Shahrukh Khan, Deepika Padukone - T-Series.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1lCKxvPrmpzAvtgy1Ftu2mEJeJcogG3Om&sz=w2000"
+},
+{
+  name: "O Meri Laila - Laila Majnu",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/O Meri Laila  Laila Majnu  Jyotica Tangri  Avinash Tiwary & Tripti Dimri  Joi, Irshad - Zee Music Company.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1z2RwF-dnDlJrhuVDO2VBOMTd7_yh2wNW&sz=w2000"
+},
+{
+  name: "MATARGASHTI - Tamasha",
+  category: "all",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/MATARGASHTI full VIDEO Song  TAMASHA Songs  Ranbir Kapoor, Deepika Padukone  T-Series - T-Series.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1e6EkKZKxbMMa-N_hw-M-3HupXBtygML1&sz=w2000"
+},
+{
+  name: "Chammak Challo - Ra One",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Lyrical Chammak Challo  Ra One  ShahRukh Khan  Kareena Kapoor - T-Series.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1ZId6oYqh_D8s9icDMewR-ZhyljCtxCQY&sz=w2000"
+},
+{
+  name: "Lickety Rap - Gargi",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Lickety Rap  Gargi  Hustle 5 Apna Homeground - KaanPhod Music.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1RFhryXRj0F6ez9gKNPUK-17TSNqrUel7&sz=w2000"
+},
+{
+  name: "KALYANI - Shreya Ghoshal",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/KALYANI (with Shreya Ghoshal) OFFICIAL MUSIC VIDEO  ARJN  KDS  FIFTY4  RONN  SHREYA GHOSHAL  - MONEY VERSE RECORDS.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1GV9y8p0ih7HVzdcobnyULarsbwTGbg3T&sz=w2000"
+},
+{
+  name: "Galti Se Mistake - Jagga Jasoos",
+  category: "all",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Jagga Jasoos Galti Se Mistake Video Song  Ranbir, Katrina  Pritam, Arijit, Amit  Amitabh B - T-Series.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1b3xNooxM-L78xMAJV4b1naeBKe5JA0XD&sz=w2000"
+},
+{
+  name: "Jaadu - PHO",
+  category: "all",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Jaadu  PHO  MTV Hustle 4 - Saregama Music.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1pRQ8RyyFvkdTZPddi6b70cJYmvpWTIES&sz=w2000"
+},
+{
+  name: "JUST A BOY - DrINsaNE",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/JUST A BOY DrINsaNE official - DrINsaNE.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1PudC1Ostwf7iwSwRUGrXE-iY3xuWXyyZ&sz=w2000"
+},
+{
+  name: "Inaam - Jasleen Royal Ft. Badshah",
+  category: "all",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Inaam - Jasleen Royal Ft. Badshah  Ansh Chahal  Offical Lyrcial Video - Jasleen Royal.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1_EoVEbYMTG9C9aoC98ZIClZSIXOF0oAp&sz=w2000"
+},
+{
+  name: "Illahi - Yeh Jawaani Hai Deewani",
+  category: "all",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Illahi - Yeh Jawaani Hai Deewani  Ranbir Kapoor, Deepika Padukone - Dharma Productions (1).mp3",
+  cover: "https://drive.google.com/thumbnail?id=1cvdnyD4ae1t7SzbsIf_TIs5Mw86m80nE&sz=w2000"
+},
+{
+  name: "FALTU PYAR - Hasan Raheem",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/FALTU PYAR (Official Video)  Hasan Raheem  Natasha Noorani  Talal Qureshi - Hasan Raheem.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1ise1-jF0Ip4t2oDtjZ9opl0K499j3l-L&sz=w2000"
+},
+{
+  name: "You & I - DIVINE",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/DIVINE - You & I  Kalyani Priyadarshan  Prod. by Zzorawar  Official Music Video - DIVINE.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1JcsOTSbl888bztFbAlshwePshr_wBYaM&sz=w2000"
+},
+{
+  name: "Boom Shaka - KRSNA",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Boom Shaka (Official Music Video)  KRNA   Dhanda Nyoliwala - KRSNA.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1zZLKLmpRHQoDTRdJ2__U8VP74EGL2lCA&sz=w2000"
+},
+{
+  name: "Azadi - Gully Boy",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Azadi - Gully Boy Ranveer Singh & Alia Bhatt  DIVINE  Dub Sharma  Siddhant  Zoya Akhtar - Zee Music Company.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1M4cbCGkXmkuVpAWV-pxq469iKp2q7pox&sz=w2000"
+},
+{
+  name: "Afghan Jalebi - Phantom",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Afghan Jalebi (Ya Baba) FULL VIDEO Song  Phantom  Saif Ali Khan Katrina Kaif Pritam Asrar T-Series - T-Series.mp3",
+  cover: "https://drive.google.com/thumbnail?id=18YMtawn2BvXt54cy-fPBAqSEoBODc4D4&sz=w2000"
+},
+{
+  name: "Aa Rela Hai Apun - Chillar Party",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/Aa Rela hai Apun  Chillar Party  Ranbir Kapoor  Amit Trivedi  Armaan Malik  Tanmay  Amitabh - Sony Music India.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1-mU5em05_xG4D2oiBy7jsCXGFiGOsA57&sz=w2000"
+},
+{
+  name: "Why This Kolaveri Di",
+  category: "new",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/3 - Why This Kolaveri Di Official Video  Dhanush  Anirudh Ravichander  Shruti Haasan - Sony Music South.mp3",
+  cover: "https://drive.google.com/thumbnail?id=1QUcOnF69aDoktqzQeAJYU0og3eLYE1rT&sz=w2000"
+},
+{
+  name: "Tu Chahiye - Bajrangi Bhaijaan",
+  category: "all",
+  url: "https://raw.githubusercontent.com/89Flexy/NewWeb/21a69f611ce81cebd22a7fb2cf29b04ad67f3bf0/'Tu Chahiye' FULL VIDEO Song - Atif Aslam Pritam  Bajrangi Bhaijaan  Salman Khan, Kareena Kapoor - T-Series.mp3",
+  cover: "https://drive.google.com/thumbnail?id=16yffrxy08u4XA7KTd6GuA_amd6aniofn&sz=w2000"
+},
 {
  name:"Tu Hai Kahan - AUR",
- category:"all",
+ category:"new",
  url:"https://raw.githubusercontent.com/89Flexy/Music-90/4d0f75c9e6278db53fa791146b9308b24ec383b1/AUR - TU HAI KAHAN - Raffey - Usama - Ahad (Official Music Video) (320 kbps).mp3",
  cover:"https://drive.google.com/thumbnail?id=1t_6-lCr4p19JsF_wC8FVGE25UdXhF0EY&sz=w2000"
 },
@@ -2359,7 +2765,55 @@ function showLibrary(){
 
 }
 
+let deferredPrompt = null;
 
+const installBtn = document.getElementById("installBtn");
+
+// Already installed hai to button mat dikhao
+function isAppInstalled(){
+  return window.matchMedia("(display-mode: standalone)").matches ||
+         window.navigator.standalone === true;
+}
+
+window.addEventListener("beforeinstallprompt", (e) => {
+
+  // Browser ka automatic mini-prompt rokta hai
+  e.preventDefault();
+
+  deferredPrompt = e;
+
+  // Already installed nahi hai tabhi button dikhao
+  if(!isAppInstalled()){
+    installBtn.style.display = "block";
+  }
+});
+
+async function installApp(){
+
+  if(!deferredPrompt) return;
+
+  deferredPrompt.prompt();
+
+  const { outcome } = await deferredPrompt.userChoice;
+
+  deferredPrompt = null;
+
+  // User ne install kar diya
+  if(outcome === "accepted"){
+    installBtn.style.display = "none";
+  }
+}
+
+// Install complete hone ke baad hide
+window.addEventListener("appinstalled", () => {
+  installBtn.style.display = "none";
+  deferredPrompt = null;
+});
+
+// Agar app already installed mode mein open hai
+if(isAppInstalled()){
+  installBtn.style.display = "none";
+}
 /* =========================================================
    BACKGROUNDS
 ========================================================= */
