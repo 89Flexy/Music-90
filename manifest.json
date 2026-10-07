@@ -2,12 +2,12 @@
   "name": "Music-89",
   "short_name": "89",
   "description": "Music-89 music player",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#000000",
-  "theme_color": "#000000",
+  "theme_color": "#071a2b",
   "icons": [
     {
       "src": "https://i.ibb.co/Mky97C7v/20260126-124939.jpg",
