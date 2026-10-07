@@ -10,9 +10,9 @@
 <meta name="description"
       content="Music-89 — Abhi's personal music space.">
 
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#071a2b">
-
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#000000">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -2981,7 +2981,67 @@ renderRecent();
 renderSongs();
 renderPersonal();
 updateCounts();
+/* =========================
+   PWA INSTALL
+========================= */
 
+let deferredPrompt = null;
+
+const installBtn = document.getElementById("installBtn");
+
+function isPWAInstalled() {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true
+  );
+}
+
+/* Browser says app is installable */
+window.addEventListener("beforeinstallprompt", (event) => {
+
+  event.preventDefault();
+
+  deferredPrompt = event;
+
+  if (!isPWAInstalled()) {
+    installBtn.style.display = "block";
+  }
+});
+
+
+/* Install button */
+installBtn.addEventListener("click", async () => {
+
+  if (!deferredPrompt) {
+    return;
+  }
+
+  deferredPrompt.prompt();
+
+  const result = await deferredPrompt.userChoice;
+
+  console.log("Install result:", result.outcome);
+
+  deferredPrompt = null;
+
+  installBtn.style.display = "none";
+});
+
+
+/* App successfully installed */
+window.addEventListener("appinstalled", () => {
+
+  deferredPrompt = null;
+
+  installBtn.style.display = "none";
+
+});
+
+
+/* Already running as installed app */
+if (isPWAInstalled()) {
+  installBtn.style.display = "none";
+}
 </script>
 
 </body>
