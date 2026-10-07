@@ -3088,6 +3088,14 @@ renderPersonal();
 updateCounts();
 
 </script>
-
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(reg => console.log("Music-89 PWA ready:", reg.scope))
+      .catch(err => console.error("PWA error:", err));
+  });
+}
+</script>
 </body>
 </html>
